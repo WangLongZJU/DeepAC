@@ -1,0 +1,10 @@
+# @package _global_
+type: deploy_deepac
+
+save_dir: ${work_dir}/workspace/deploy_deepac
+# TODO: change path
+load_cfg: ${work_dir}/workspace/train_bop_deepac/logs-2024-01-08-15-52-47/train_cfg.yml
+load_model: ${work_dir}/workspace/train_bop_deepac/logs-2024-01-08-15-52-47/model_last.ckpt
+
+# input_size: [256, 256]
+gpu_id: '0'

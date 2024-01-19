@@ -1,0 +1,21 @@
+# @package _global_
+type: prerender
+
+prerender_method: BOP
+data_dir: "datasets/BOP/lm/models"
+batch_size: 2
+body_names: ['obj_000001', 'obj_000002', 'obj_000003', 'obj_000004', 'obj_000005', 'obj_000006', 'obj_000007', 'obj_000008',
+             'obj_000009', 'obj_000010', 'obj_000011', 'obj_000012', 'obj_000013', 'obj_000014', 'obj_000015']
+sphere_radius: 0.8
+maximum_body_diameter: 0.3 # manually adjust
+geometry_unit_in_meter: 0.001 # 0.001
+image_size: 2000
+image_border_size: 20
+n_divide: 4
+normalize_to_origin: False  # fixed False
+num_sample_contour_point: 200
+k_min_contour_length: 15
+k_contour_normal_approx_radius: 3
+output_mask: False # True
+output_depth: False
+output_depth_vertex: False

@@ -1,0 +1,17 @@
+# @package _global_
+type: demo
+
+save_dir: ${work_dir}/workspace/demo
+load_cfg: ${work_dir}/workspace/train_bop_deepac/logs-2024-01-08-15-52-47/train_cfg.yml
+load_model: ${work_dir}/workspace/train_bop_deepac/logs-2024-01-08-15-52-47/model_last.ckpt
+# -----------------
+
+data_dir: data/demo
+obj_name: Cat
+geometry_unit_in_meter: 0.001
+output_video: true
+output_size: [320, 320]
+
+fore_learn_rate: 0.2
+back_learn_rate: 0.2
+gpu_id: '0' # 0, 1

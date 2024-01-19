@@ -1,0 +1,48 @@
+# @package _global_
+type: test_deepac
+task: tracking
+
+save_dir: ${work_dir}/workspace/test_bcot_deepac
+# TODO: change path
+load_cfg: ${work_dir}/workspace/train_bop_deepac/logs-2024-01-08-15-52-47/train_cfg.yml
+load_model: ${work_dir}/workspace/train_bop_deepac/logs-2024-01-08-15-52-47/model_last.ckpt
+# -----------------
+output_video: false
+output_size: [320, 320]
+output_pose: true
+
+fore_learn_rate: 0.2
+back_learn_rate: 0.2
+gpu_id: '0'
+distribution_length: 12 # 16
+
+data:
+  name: BCOT
+  dataset_dir: datasets/BCOT
+  change_background: false
+  batch_size_per_gpu: 1
+  test_obj_names: # ['Cat']
+                  # ['3D Touch', 'Ape', 'Auto GPS', 'Bracket']
+                ['3D Touch', 'Ape', 'Auto GPS', 'Bracket', 'Cat', 'Deadpool', 'Driller', 'FlashLight', 'Jack',
+                'Lamp Clamp', 'Lego', 'RJ45 Clip', 'RTI Arm', 'Squirrel', 'Standtube', 'Stitch',
+                'Teapot', 'Tube', 'Vampire Queen', 'Wall Shelf']
+  test_slices: # ['complex_movable_suspension']
+#              ['outdoor_scene1_movable_handheld_cam1', 'outdoor_scene1_movable_handheld_cam2', 'outdoor_scene1_movable_suspension_cam1',
+#               'outdoor_scene1_movable_suspension_cam2', 'outdoor_scene2_movable_handheld_cam1', 'outdoor_scene2_movable_handheld_cam2',
+#               'outdoor_scene2_movable_suspension_cam1', 'outdoor_scene2_movable_suspension_cam2']
+              # ['complex_movable_handheld']
+             ['outdoor_scene1_movable_handheld_cam1', 'outdoor_scene1_movable_handheld_cam2', 'outdoor_scene1_movable_suspension_cam1',
+              'outdoor_scene1_movable_suspension_cam2', 'outdoor_scene2_movable_handheld_cam1', 'outdoor_scene2_movable_handheld_cam2',
+              'outdoor_scene2_movable_suspension_cam1', 'outdoor_scene2_movable_suspension_cam2', 'complex_movable_handheld',
+              'complex_movable_suspension', 'complex_static_handheld', 'complex_static_suspension', 'complex_static_trans', 'easy_static_handheld', 'easy_static_suspension',
+                'easy_static_trans', 'light_movable_handheld', 'light_movable_suspension', 'light_static_handheld',
+                'light_static_suspension', 'light_static_trans', 'occlusion_movable_suspension']
+  skip_frame: 1
+  num_correspondence_lines: 200
+
+ray:
+  use_ray: true
+  n_obj_workers: 4
+  n_slice_workers: 1
+  n_cpus_per_worker: 1
+  n_gpus_per_worker: 0.25

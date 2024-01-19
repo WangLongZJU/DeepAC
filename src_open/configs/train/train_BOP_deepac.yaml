@@ -1,0 +1,192 @@
+# @package _global_
+type: train
+
+save_dir: ${work_dir}/workspace/train_bop_deepac
+
+data:
+  name: BOP
+  dataset_dir: datasets/BOP
+  sub_dataset_dir: ['hope', 'icbin', 'icmi', 'tless', 'tudl', 'lm', 'ycbv', 'ruapc']
+  sub_dataset_model_dir: ['models', 'models', 'models', 'models_cad', 
+                          'models', 'models', 'models_eval', 'models']
+  sub_dataset_val_dir: ['val', 'test', 'test', 'test_primesense', 
+                        'train_real', 'test', 'test', 'test']
+  background_image_dir: datasets/SUN2012
+  crop: True
+  crop_border: 50 # 40 # 50
+  resize: 320 # 256 # 320
+  resize_by: max
+  pad: 320 # 256 # 320
+  val_offset: True # whether not to use sequence, fixed
+  train_offset: True # whether not to use sequence, fixed
+  skip_frame: 1 # 2
+  change_background: True
+  change_background_thres: 0.5 # in [0.1, 0.9] 
+  skip_template_view: 6 # 1,6
+  get_top_k_template_views: 5 # 1,5
+  img_aug: True # False
+  grayscale: False # true
+  
+  # -------------------------------------------------
+  # set sub-dataset directories of BOP
+  # HOPE dataset
+  hope_train_obj_names: none
+  hope_train_pbr_slices: none # {all: 1.0, train_split: 0.7, val_split: 0.3, none: 0.0}
+  hope_train_real_slices: none
+  hope_val_obj_names: ['obj_000001', 'obj_000002', 'obj_000003', 'obj_000004', 'obj_000005', 'obj_000006',
+                      'obj_000007', 'obj_000008', 'obj_000009', 'obj_000010', 'obj_000011', 'obj_000012',
+                      'obj_000013', 'obj_000014', 'obj_000015', 'obj_000016', 'obj_000017', 'obj_000018',
+                      'obj_000019', 'obj_000020', 'obj_000021', 'obj_000022', 'obj_000023', 'obj_000024',
+                      'obj_000025', 'obj_000026', 'obj_000027', 'obj_000028']
+  hope_val_pbr_slices: none
+  hope_val_real_slices: all
+
+  # IC-BIN dataset
+  icbin_train_obj_names: ['obj_000001']
+  icbin_train_pbr_slices: train_split
+  icbin_train_real_slices: none
+  icbin_val_obj_names: ['obj_000002']
+  icbin_val_pbr_slices: val_split
+  icbin_val_real_slices: all
+
+  # IC-MI dataset
+  icmi_train_obj_names: none
+  icmi_train_pbr_slices: none
+  icmi_train_real_slices: none
+  icmi_val_obj_names: ['obj_000001', 'obj_000002', 'obj_000003', 'obj_000004', 'obj_000005', 'obj_000006']
+  icmi_val_pbr_slices: none
+  icmi_val_real_slices: all
+
+  # T-LESS dataset
+  tless_train_obj_names: ['obj_000001', 'obj_000002', 'obj_000003', 'obj_000004', 'obj_000005', 'obj_000006',
+                      'obj_000007', 'obj_000008', 'obj_000009', 'obj_000010', 'obj_000011', 'obj_000012',
+                      'obj_000013', 'obj_000014', 'obj_000015', 'obj_000016', 'obj_000017', 'obj_000018']
+  tless_train_pbr_slices: train_split
+  tless_train_real_slices: none                   
+  tless_val_obj_names: ['obj_000019', 'obj_000020', 'obj_000021', 'obj_000022', 'obj_000023', 'obj_000024',
+                      'obj_000025', 'obj_000026', 'obj_000027', 'obj_000028', 'obj_000029', 'obj_000030']
+  tless_val_pbr_slices: val_split
+  tless_val_real_slices: all
+
+  # TUD-L dataset
+  tudl_train_obj_names: ['obj_000001', 'obj_000002']
+  tudl_train_pbr_slices: train_split
+  tudl_train_real_slices: none
+  tudl_val_obj_names: ['obj_000003']
+  tudl_val_pbr_slices: val_split
+  tudl_val_real_slices: all
+
+  # Linemod dataset
+  lm_train_obj_names: ['obj_000001', 'obj_000002', 'obj_000003', 'obj_000004', 'obj_000005', 'obj_000006',
+                      'obj_000007', 'obj_000008', 'obj_000009', 'obj_000010']
+  lm_train_pbr_slices: train_split
+  lm_train_real_slices: none
+  lm_val_obj_names: ['obj_000011', 'obj_000012', 'obj_000013', 'obj_000014', 'obj_000015']
+  lm_val_pbr_slices: val_split
+  lm_val_real_slices: all
+  
+  # YCBV dataset
+  ycbv_train_obj_names: ['obj_000001', 'obj_000002', 'obj_000003', 'obj_000004', 'obj_000005', 'obj_000006',
+                      'obj_000007', 'obj_000008', 'obj_000009', 'obj_000010', 'obj_000011', 'obj_000012',
+                      'obj_000013', 'obj_000014', 'obj_000015']
+  ycbv_train_pbr_slices: train_split
+  ycbv_train_real_slices: none
+  ycbv_val_obj_names: ['obj_000016', 'obj_000017', 'obj_000018', 'obj_000019', 'obj_000020', 'obj_000021']
+  ycbv_val_pbr_slices: val_split
+  ycbv_val_real_slices: all
+  # specific setting for YCBV dataset
+  ycbv_train_plus_slices: train_split
+  ycbv_val_plus_slices: val_split
+
+  # RU-APC dataset
+  ruapc_train_obj_names: ['obj_000001', 'obj_000002', 'obj_000003', 'obj_000004', 'obj_000005', 'obj_000006',
+                      'obj_000007', 'obj_000008']
+  ruapc_train_pbr_slices: train_split
+  ruapc_train_real_slices: none
+  ruapc_val_obj_names: ['obj_000009', 'obj_000010', 'obj_000011', 'obj_000013', 'obj_000014'] # 'obj_000012' has problems
+  ruapc_val_pbr_slices: val_split
+  ruapc_val_real_slices: all
+  # -------------------------------------------------
+
+  train_num_per_obj: 1500 
+  val_num_per_obj: 500
+  sample_vertex_num: 500
+  min_visib_fract: 0.8 # 0.65
+  min_px_count_visib: 1000
+  min_offset_angle: 5.0
+  max_offset_angle: 25.0 # 15.0, 25.0
+  min_offset_translation: 0.005
+  max_offset_translation: 0.025 # 0.015, 0.025
+  train_batch_size_per_gpu: 48
+  val_batch_size_per_gpu: 48
+  workers_per_gpu: 2
+  seed: 1
+
+models:
+  name: deep_ac
+  scales: [ 2, 2, 1, 1, 0, 0 ]
+  success_thresh: 2 # 1.5
+  regulation_distribution_mean: false
+  down_sample_image_mode: bilinear # nearest
+  function_length: 8 # 9 # 8
+  distribution_length: 12
+  function_slope: 0.0
+  function_amplitude: 0.36
+  min_continuous_distance: 6.0
+  learning_rate: 1.3
+  alternative_optimizing: false # true # false
+  optimizer:
+    name: learned_optimizer
+    lambda_: 0.01
+    damping:
+      type: constant
+      log_range: [ -5, 6 ]  # [ -6, 5 ]
+    trainable: false
+  extractor:
+    name: backbone_unet
+    num_output_layer: 3
+    output_dim: [16, 16, 16]
+    encoder: mobileone_s0 # mobileone_s0 # mobileone_s1 # mobilenet_v2
+    encoder_depth: 5
+    decoder: UnetDecoder
+    decoder_channels: [256, 128, 64, 32, 16]
+    align_data_to_pretrain: false # false # true
+    pretrained_weights: 'imagenet'
+    trainable: true
+  histogram:
+    name: histogram
+    num_bin: 32
+    num_channel: 3
+    unconsidered_line_length: 1
+    considered_line_length: 18
+    trainable: false
+  line_distribution_extractor:
+    name: line_distribution_extractor
+    scales: [ 1 ]  # [ 2, 1 ]  # = segment_scales
+    function_length: 8 # = function_length
+    distribution_length: 12 # = distribution_length
+    in_channel: 16 #  = extractor.output_dim  # 16
+    out_channel: 1
+    cat_fore_prob: true
+    cat_distribution: true
+
+trainer:
+  total_epochs: 5 # 25 # 15
+  val_intervals: 1
+  val_visualize: false
+  optimizer:
+    name: Adam
+    lr: 1e-3
+    lr_scaling: [ [ 100, [ 'dampingnet.const' ] ] ]
+    weight_decay: 0.0
+  lr_schedule:
+    name: StepLR
+    step_size: 1 # 5 # 4
+    gamma: 0.25 # 0.5
+  log:
+    interval: 2
+  seed: 0
+  dataset_callback_fn: sample_new_items
+
+device:
+  gpu_ids: [ 0, 1, 2, 3 ]

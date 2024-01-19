@@ -1,0 +1,10 @@
+# @package _global_
+type: test_json
+task: json
+
+# TODO: change path
+load_json: ${work_dir}/workspace/test_rbot_deepac/logs-2024-01-08-19-09-53/test_results.json 
+# -----------------
+obj_names: ['ape', 'bakingsoda', 'benchviseblue', 'broccolisoup', 'cam', 'can', 'cat', 'clown', 'cube',
+            'driller', 'duck', 'eggbox', 'glue', 'iron', 'koalacandy', 'lamp', 'phone', 'squirrel']
+slices: ['a_regular', 'b_dynamiclight', 'c_noisy', 'd_occlusion']

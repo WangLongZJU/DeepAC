@@ -1,0 +1,47 @@
+# @package _global_
+type: test_deepac
+task: tracking
+
+save_dir: ${work_dir}/workspace/test_opt_deepac
+# TODO: change path
+load_cfg: ${work_dir}/workspace/train_bop_deepac/logs-2024-01-08-15-52-47/train_cfg.yml
+load_model: ${work_dir}/workspace/train_bop_deepac/logs-2024-01-08-15-52-47/model_last.ckpt
+# -----------------
+output_pose: true
+output_video: false
+output_size: [320, 320]
+
+fore_learn_rate: 0.2
+back_learn_rate: 0.2
+gpu_id: '0'
+distribution_length: 12
+
+data:
+  name: OPT
+  dataset_dir: datasets/OPT
+  change_background: false
+  batch_size_per_gpu: 1
+  # test_obj_names: ['bike', 'chest', 'house', 'ironman', 'jet', 'soda']
+  test_obj_names: ['bike']
+  test_slices: ['fl_b', 'fl_f', 'fl_l', 'fl_r', 'fm_b', 'fm_f', 'fm_l', 'fm_r',
+                'ir_1_b', 'ir_1_f', 'ir_1_l', 'ir_1_r', 'ir_2_b', 'ir_2_f', 'ir_2_l', 'ir_2_r',
+                'ir_3_b', 'ir_3_f', 'ir_3_l', 'ir_3_r', 'ir_4_b', 'ir_4_f', 'ir_4_l', 'ir_4_r',
+                'ir_5_b', 'ir_5_f', 'ir_5_l', 'ir_5_r', 'ml_b', 'ml_f', 'ml_l', 'ml_r',
+                'or_1_b', 'or_1_f', 'or_1_l', 'or_1_r', 'or_2_b', 'or_2_f', 'or_2_l', 'or_2_r',
+                'or_3_b', 'or_3_f', 'or_3_l', 'or_3_r', 'or_4_b', 'or_4_f', 'or_4_l', 'or_4_r',
+                'or_5_b', 'or_5_f', 'or_5_l', 'or_5_r', 'tr_1_b', 'tr_1_f', 'tr_1_l', 'tr_1_r',
+                'tr_2_b', 'tr_2_f', 'tr_2_l', 'tr_2_r', 'tr_3_b', 'tr_3_f', 'tr_3_l', 'tr_3_r',
+                'tr_4_b', 'tr_4_f', 'tr_4_l', 'tr_4_r', 'tr_5_b', 'tr_5_f', 'tr_5_l', 'tr_5_r',
+                'zo_1_b', 'zo_1_f', 'zo_1_l', 'zo_1_r', 'zo_2_b', 'zo_2_f', 'zo_2_l', 'zo_2_r',
+                'zo_3_b', 'zo_3_f', 'zo_3_l', 'zo_3_r', 'zo_4_b', 'zo_4_f', 'zo_4_l', 'zo_4_r',
+                'zo_5_b', 'zo_5_f', 'zo_5_l', 'zo_5_r']
+  # test_obj_names: ['bike', 'chest']
+  # test_slices: ['fl_b', 'fl_f']
+  skip_frame: 1
+
+ray:
+  use_ray: false # true
+  n_obj_workers: 20
+  n_slice_workers: 1
+  n_cpus_per_worker: 1
+  n_gpus_per_worker: 0.1
